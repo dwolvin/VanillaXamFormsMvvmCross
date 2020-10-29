@@ -129,6 +129,9 @@
     <PackageReference Include="MvvmCross">
       <Version>7.1.2</Version>
     </PackageReference>
+    <PackageReference Include="MvvmCross.Forms">
+      <Version>7.1.2</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
