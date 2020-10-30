@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vanilla.iOS", "vanilla.iOS\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vanilla.UITests", "vanilla.UITests\vanilla.UITests.csproj", "{80226D31-ECC5-4CD4-A303-67820ACDFA74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vanilla", "vanilla\vanilla.csproj", "{306825DF-4245-4C92-A059-6C123C71C269}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vanilla.UI", "vanilla.UI\vanilla.UI.csproj", "{306825DF-4245-4C92-A059-6C123C71C269}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vanilla.Core", "vanilla.Core\vanilla.Core.csproj", "{519F49D6-DCC8-47DC-ACF9-2963D5018005}"
 EndProject

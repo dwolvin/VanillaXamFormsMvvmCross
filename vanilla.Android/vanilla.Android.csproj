@@ -95,13 +95,13 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\vanilla\vanilla.csproj">
-      <Project>{306825DF-4245-4C92-A059-6C123C71C269}</Project>
-      <Name>vanilla</Name>
-    </ProjectReference>
     <ProjectReference Include="..\vanilla.Core\vanilla.Core.csproj">
       <Project>{519F49D6-DCC8-47DC-ACF9-2963D5018005}</Project>
       <Name>vanilla.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\vanilla.UI\vanilla.UI.csproj">
+      <Project>{306825DF-4245-4C92-A059-6C123C71C269}</Project>
+      <Name>vanilla.UI</Name>
     </ProjectReference>
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

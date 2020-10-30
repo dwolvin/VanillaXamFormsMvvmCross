@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using MvvmCross.Forms.Views;
-using Xamarin.Forms;
+﻿using MvvmCross.Forms.Views;
 
-namespace vanilla.Views
+namespace vanilla.UI.Views
 {
     public partial class HomeView : MvxContentPage
     {
