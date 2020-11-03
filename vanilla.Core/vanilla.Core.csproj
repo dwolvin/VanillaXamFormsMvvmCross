@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\" />
+    <Folder Include="PopupHelpers\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross" Version="7.1.2" />

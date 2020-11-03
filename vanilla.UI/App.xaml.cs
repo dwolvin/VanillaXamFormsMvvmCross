@@ -1,17 +1,13 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
 namespace vanilla.UI
 {
     public partial class App : Application
     {
         public App()
-        {
+        {           
             InitializeComponent();
-
-            MainPage = new MainPage();
-        }
+        }    
 
         protected override void OnStart()
         {
