@@ -12,6 +12,7 @@ namespace vanilla.Core.ViewModels
     {
         private IMvxLog _log;
         private ISimpleService _simpleService;
+        private readonly IStationRepository _stationService;
 
         private MvxInteraction<ConfirmActionModel> _confirmInteraction = new MvxInteraction<ConfirmActionModel>();
         public IMvxInteraction<ConfirmActionModel> ConfirmInteraction => _confirmInteraction;
@@ -20,15 +21,33 @@ namespace vanilla.Core.ViewModels
         public IMvxCommand ResetTextCommand => new MvxCommand(ResetText);
 
 
-        public HomeViewModel(IMvxLogProvider logProvider, ISimpleService simpleService)
+        public HomeViewModel(IMvxLogProvider logProvider, ISimpleService simpleService, IStationRepository stationService)
         {
             _log = logProvider.GetLogFor<HomeViewModel>();
-            _simpleService = simpleService;            
+            _simpleService = simpleService;
+            _stationService = stationService;
         }
 
         private void ResetText()
         {
-            Text = _simpleService.GetString();
+            Station s = _stationService.GetStation("AAA");
+
+            if (s == null)
+            {
+                s = new Station()
+                {
+                    StationName = "Test Station",
+                    StationCode = "AAA",
+                    Lat= 37.035705f,
+                    Lon = -76.202770f,
+                    DateCreated = DateTime.Now
+                };
+
+            }
+
+            _stationService.UpsertStation(s);
+
+            Text = $"{s.Id} - {s.StationName}";
         }
 
         private void ConfirmSomething()
