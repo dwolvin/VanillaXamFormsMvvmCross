@@ -9,8 +9,10 @@
     <Grid>
       <StackLayout>
         <Entry Text="{Binding Text, Mode=TwoWay}"></Entry>
-        <Button Text="Reset" Command="{Binding ResetTextCommand}"></Button>
-        <Button Text="Do Some Destructive Action" Command="{Binding ConfirmSomethingCommand}" ></Button>
+        <Button Text="Create Station" Command="{Binding ResetTextCommand}" BackgroundColor="LightBlue"></Button>
+        <Button Text="Do Some Destructive Action" Command="{Binding ConfirmSomethingCommand}" BackgroundColor="LightGreen"></Button>
+        <Button Text="Crash Test" Command="{Binding CrashCommand}" BackgroundColor="LightCoral"></Button>
+          <ActivityIndicator IsRunning="{Binding IsBusy}" BackgroundColor="AliceBlue" />
       </StackLayout>
     </Grid>
 </views:MvxContentPage>

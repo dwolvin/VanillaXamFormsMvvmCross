@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
@@ -19,13 +20,62 @@ namespace vanilla.Core.ViewModels
 
         public IMvxCommand ConfirmSomethingCommand => new MvxCommand(()=>ConfirmSomething());
         public IMvxCommand ResetTextCommand => new MvxCommand(ResetText);
+        public IMvxCommand CrashCommand => new MvxCommand(() => MvxNotifyTask.Create(() => DoHeavyLifting(), onException: ex => HandleBackgroundException(ex)));
 
-
-        public HomeViewModel(IMvxLogProvider logProvider, ISimpleService simpleService, IStationRepository stationService)
+        public HomeViewModel(IMvxLogProvider logProvider,
+            ISimpleService simpleService,
+            IStationRepository stationService)
         {
             _log = logProvider.GetLogFor<HomeViewModel>();
             _simpleService = simpleService;
             _stationService = stationService;
+        }
+
+        public override void Prepare()
+        {
+            base.Prepare();
+        }
+
+
+        private async Task DoHeavyLifting()
+        {
+
+            IsBusy = true;
+
+            await SleepTask();
+            await BoomTask();
+
+            IsBusy = false;
+        }
+
+        private void HandleBackgroundException(Exception ex)
+        {
+            _log.Error(ex, "Background Exception!");
+            IsBusy = false;
+        }
+
+
+        private async Task SleepTask()
+        {
+            _log.Debug("Starting sleep task");
+            await Task.Delay(2000);
+            _log.Debug("Finished sleep task");
+        }
+
+        private async Task BoomTask()
+        {
+            _log.Debug("Starting boom task");
+            await Task.Delay(0);
+
+            _log.Debug("Booming now");
+            throw new Exception("Unexpected exception!");
+        }
+
+        private bool _isBusy;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { SetProperty(ref _isBusy, value); }
         }
 
         private void ResetText()
