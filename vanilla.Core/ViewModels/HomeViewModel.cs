@@ -42,8 +42,8 @@ namespace vanilla.Core.ViewModels
 
             IsBusy = true;
 
-            await SleepTask();
-            await BoomTask();
+            await _simpleService.SleepTask();
+            await _simpleService.BoomTask();
 
             IsBusy = false;
         }
@@ -52,23 +52,6 @@ namespace vanilla.Core.ViewModels
         {
             _log.Error(ex, "Background Exception!");
             IsBusy = false;
-        }
-
-
-        private async Task SleepTask()
-        {
-            _log.Debug("Starting sleep task");
-            await Task.Delay(2000);
-            _log.Debug("Finished sleep task");
-        }
-
-        private async Task BoomTask()
-        {
-            _log.Debug("Starting boom task");
-            await Task.Delay(0);
-
-            _log.Debug("Booming now");
-            throw new Exception("Unexpected exception!");
         }
 
         private bool _isBusy;
@@ -92,7 +75,6 @@ namespace vanilla.Core.ViewModels
                     Lon = -76.202770f,
                     DateCreated = DateTime.Now
                 };
-
             }
 
             _stationService.UpsertStation(s);
