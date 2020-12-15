@@ -9,7 +9,6 @@ using Xamarin.Forms;
 
 namespace vanilla.UI.Views
 {
-
     public partial class StationDetailsView : MvxContentPage, IMvxOverridePresentationAttribute
     {
         public StationDetailsView()
@@ -25,9 +24,8 @@ namespace vanilla.UI.Views
             }
             else
             {
-                return new MvxContentPagePresentationAttribute();
+                return new MvxContentPagePresentationAttribute() { WrapInNavigationPage = true };
             }
         }
-
     }
 }

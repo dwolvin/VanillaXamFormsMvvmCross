@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:vanilla.UI.Views"
     x:Class="vanilla.UI.Views.StationDetailsView"
     Title="Station Details"
-NavigationPage.HasNavigationBar="False"    
+   
     >
     <views:MvxContentPage.Content>
         <StackLayout Orientation="Vertical" Margin="40">
