@@ -24,11 +24,18 @@ namespace vanilla.Core.ViewModels
         public IMvxCommand ConfirmSomethingCommand => new MvxCommand(()=>ConfirmSomething());
         public IMvxCommand ResetTextCommand => new MvxCommand(ResetText);
         public IMvxCommand CrashCommand => new MvxCommand(() => MvxNotifyTask.Create(() => DoHeavyLifting(), onException: ex => HandleBackgroundException(ex)));
-        public IMvxCommand StationsCommand => new MvxCommand(async ()=> await ShowStationList());
+        public IMvxCommand<string> StationsCommand => new MvxCommand<string>(async (x)=> await ShowStationList(x));
 
-        private async Task ShowStationList()
+        private async Task ShowStationList(string device)
         {
-           await  _navigationService.Navigate<StationListViewModel>();
+            if (device == "2")
+            {
+                await _navigationService.Navigate<StationsRootViewModel>();
+            }
+            else
+            {
+                await _navigationService.Navigate<StationListViewModel>();
+            }
         }
 
         public HomeViewModel(IMvxNavigationService navigationService,

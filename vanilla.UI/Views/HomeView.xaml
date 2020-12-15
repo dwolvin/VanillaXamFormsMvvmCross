@@ -12,9 +12,11 @@
         <Button Text="Create Station" Command="{Binding ResetTextCommand}" BackgroundColor="LightBlue"></Button>
         <Button Text="Do Some Destructive Action" Command="{Binding ConfirmSomethingCommand}" BackgroundColor="LightGreen"></Button>
         <Button Text="Crash Test" Command="{Binding CrashCommand}" BackgroundColor="LightCoral"></Button>
-        <Button Text="List Stations" Command="{Binding StationsCommand}" BackgroundColor="LightSkyBlue"></Button>
-
-
+        <Button Text="List Stations" Command="{Binding StationsCommand}"  BackgroundColor="LightSkyBlue">
+            <Button.CommandParameter>
+        <OnIdiom Phone="1" Tablet="2"></OnIdiom>
+            </Button.CommandParameter>
+        </Button>
           <ActivityIndicator IsRunning="{Binding IsBusy}" BackgroundColor="AliceBlue" />
       </StackLayout>
     </Grid>

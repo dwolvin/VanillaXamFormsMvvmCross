@@ -4,7 +4,10 @@
     xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:vanilla.UI.Views"
-    x:Class="vanilla.UI.Views.StationDetailsView">
+    x:Class="vanilla.UI.Views.StationDetailsView"
+    Title="Station Details"
+NavigationPage.HasNavigationBar="False"    
+    >
     <views:MvxContentPage.Content>
         <StackLayout Orientation="Vertical" Margin="40">
             <Label Text="Station Details" FontSize="Large"/>
