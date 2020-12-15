@@ -33,7 +33,6 @@ namespace vanilla.Core.ViewModels
            await base.Initialize();
 
             Station = _stationRepository.GetStation(_stationId);
-
         }
     }
 }

@@ -9,6 +9,18 @@
     <views:MvxContentPage.Content>
         <StackLayout Orientation="Vertical" Margin="40">
             <Label Text="List"/>
+            <views:MvxListView
+                x:Name="stationList"
+                ItemsSource="{Binding Stations}"
+                SelectedItem="{Binding SelectedStation}"
+                               >
+
+                <views:MvxListView.ItemTemplate>                    
+                    <DataTemplate>
+                        <TextCell Text="{Binding StationName}"/>
+                    </DataTemplate>
+                </views:MvxListView.ItemTemplate>
+            </views:MvxListView>
         </StackLayout>
     </views:MvxContentPage.Content>
 </views:MvxContentPage>
