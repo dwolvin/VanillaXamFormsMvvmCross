@@ -3,7 +3,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using vanilla.Core.Models;
 using vanilla.Core.PopupHelpers;
 using vanilla.Core.Services;
 
@@ -11,8 +13,9 @@ namespace vanilla.Core.ViewModels
 {
     public class HomeViewModel : MvxViewModel
     {
-        private IMvxLog _log;
-        private ISimpleService _simpleService;
+        private readonly IMvxNavigationService _navigationService;
+        private readonly IMvxLog _log;
+        private readonly ISimpleService _simpleService;
         private readonly IStationRepository _stationService;
 
         private MvxInteraction<ConfirmActionModel> _confirmInteraction = new MvxInteraction<ConfirmActionModel>();
@@ -21,11 +24,19 @@ namespace vanilla.Core.ViewModels
         public IMvxCommand ConfirmSomethingCommand => new MvxCommand(()=>ConfirmSomething());
         public IMvxCommand ResetTextCommand => new MvxCommand(ResetText);
         public IMvxCommand CrashCommand => new MvxCommand(() => MvxNotifyTask.Create(() => DoHeavyLifting(), onException: ex => HandleBackgroundException(ex)));
+        public IMvxCommand StationsCommand => new MvxCommand(async ()=> await ShowStationList());
 
-        public HomeViewModel(IMvxLogProvider logProvider,
+        private async Task ShowStationList()
+        {
+           await  _navigationService.Navigate<StationListViewModel>();
+        }
+
+        public HomeViewModel(IMvxNavigationService navigationService,
+            IMvxLogProvider logProvider,
             ISimpleService simpleService,
             IStationRepository stationService)
         {
+            _navigationService = navigationService;
             _log = logProvider.GetLogFor<HomeViewModel>();
             _simpleService = simpleService;
             _stationService = stationService;
@@ -36,10 +47,8 @@ namespace vanilla.Core.ViewModels
             base.Prepare();
         }
 
-
         private async Task DoHeavyLifting()
         {
-
             IsBusy = true;
 
             await _simpleService.SleepTask();

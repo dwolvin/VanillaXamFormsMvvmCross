@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using MvvmCross.Logging;
+using vanilla.Core.Models;
 
 namespace vanilla.Core.Services
 {

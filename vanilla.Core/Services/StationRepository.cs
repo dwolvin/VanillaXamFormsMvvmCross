@@ -1,24 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using LiteDB;
+using vanilla.Core.Models;
 
 namespace vanilla.Core.Services
 {
-
-    public class Station {
-        public int Id { get; set; }
-        public string StationCode { get; set; }
-        public string StationName { get; set; }
-        public float Lat { get; set; }
-        public float Lon { get; set; }
-        public DateTime DateCreated { get; set; }
-    }
-
     public interface IStationRepository
     {
         IEnumerable<Station> GetAllStations();
         void UpsertStation(Station station);
         Station GetStation(string stationCode);
+        Station GetStation(int id);
     }
 
     public class StationRepository : IStationRepository, IDisposable
@@ -50,6 +42,11 @@ namespace vanilla.Core.Services
         public Station GetStation(string stationCode)
         {
             return _stationCollection.FindOne(x => x.StationCode == stationCode);
+        }
+
+        public Station GetStation(int id)
+        {
+            return _stationCollection.FindById(id);
         }
 
         public void DeleteStation(Station station)

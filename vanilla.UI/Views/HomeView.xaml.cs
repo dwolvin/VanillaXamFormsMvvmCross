@@ -4,6 +4,7 @@ using MvvmCross.Forms.Views;
 using MvvmCross.ViewModels;
 using vanilla.Core.PopupHelpers;
 using vanilla.Core.ViewModels;
+using Xamarin.Forms;
 
 namespace vanilla.UI.Views
 {
@@ -39,7 +40,6 @@ namespace vanilla.UI.Views
 
         protected override void OnViewModelSet()
         {
-
             var set = this.CreateBindingSet<HomeView, HomeViewModel>();
             set.Bind(this).For(view => view.ConfirmActionInteraction).To(ViewModel => ViewModel.ConfirmInteraction).TwoWay();
             set.Apply();
