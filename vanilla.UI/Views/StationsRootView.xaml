@@ -4,6 +4,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="vanilla.UI.Views.StationsRootView"
-    Title="Stations" >
+    Title="Stations"
+    >
+
 
 </views:MvxMasterDetailPage>

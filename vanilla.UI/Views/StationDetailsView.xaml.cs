@@ -20,7 +20,7 @@ namespace vanilla.UI.Views
         {
             if (Device.Idiom == TargetIdiom.Tablet)
             {
-                return new MvxMasterDetailPagePresentationAttribute(MasterDetailPosition.Detail) { NoHistory = true};
+                return new MvxMasterDetailPagePresentationAttribute(MasterDetailPosition.Detail) { NoHistory = true, WrapInNavigationPage=false};
             }
             else
             {
