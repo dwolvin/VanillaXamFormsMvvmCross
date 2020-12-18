@@ -18,7 +18,7 @@ namespace vanilla.UI.Views
 
         public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
         {
-            if (Device.Idiom == TargetIdiom.Tablet)
+            if (Device.Idiom == TargetIdiom.TV)
             {
                 return new MvxMasterDetailPagePresentationAttribute(MasterDetailPosition.Master);
             }

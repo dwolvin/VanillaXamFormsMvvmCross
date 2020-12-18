@@ -21,6 +21,7 @@ namespace vanilla.Core.Services
         private static string collectionName = "stations";
         private LiteDatabase _db;
         private ILiteCollection<Station> _collection;
+
         private string AppDataFolder => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         private string dbFileFullPath => Path.Combine(AppDataFolder, dbFileName);
 
