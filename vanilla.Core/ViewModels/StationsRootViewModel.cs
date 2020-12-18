@@ -13,16 +13,16 @@ namespace vanilla.Core.ViewModels
             _navigationService = navigationService;
         }
 
-        private async Task InitializeViewModels()
-        {
-            await _navigationService.Navigate<StationListViewModel>();
-            await _navigationService.Navigate<StationDetailsViewModel>();
-        }
-
         public override void ViewAppearing()
         {
             base.ViewAppearing();
             MvxNotifyTask.Create(async () => await this.InitializeViewModels());
+        }
+
+        private async Task InitializeViewModels()
+        {
+            await _navigationService.Navigate<StationListViewModel>();
+            await _navigationService.Navigate<StationDetailsViewModel>();
         }
     }
 }

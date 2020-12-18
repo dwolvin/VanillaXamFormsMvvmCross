@@ -25,11 +25,12 @@ namespace vanilla.Core.ViewModels
         public IMvxCommand ResetTextCommand => new MvxCommand(ResetText);
         public IMvxCommand CrashCommand => new MvxCommand(() => MvxNotifyTask.Create(() => DoHeavyLifting(), onException: ex => HandleBackgroundException(ex)));
 
-        public IMvxCommand<int> StationsCommand => new MvxCommand<int>(async (viewCount)=> await ShowStationList(viewCount));
+        public IMvxCommand<int> StationsCommand => new MvxCommand<int>(async (numViews)=> await ShowStationList(numViews));
 
-        private async Task ShowStationList(int viewCount)
+        //If the device can display two views, navigate to the master-detail root view model.
+        private async Task ShowStationList(int numViews)
         {
-            if (viewCount == 2)
+            if (numViews == 2)
             {                
                 await _navigationService.Navigate<StationsRootViewModel>();
             }
@@ -53,6 +54,12 @@ namespace vanilla.Core.ViewModels
         public override void Prepare()
         {
             base.Prepare();
+        }
+        public async override Task Initialize()
+        {
+           await base.Initialize();
+            _simpleService.SeedDatabase();
+
         }
 
         private async Task DoHeavyLifting()
@@ -94,7 +101,7 @@ namespace vanilla.Core.ViewModels
                 };
             }
 
-            _stationService.UpsertStation(s);
+            _stationService.InsertStation(s);
 
             Text = $"{s.Id} - {s.StationName}";
         }

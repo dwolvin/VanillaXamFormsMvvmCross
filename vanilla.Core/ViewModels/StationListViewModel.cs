@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using vanilla.Core.Models;
@@ -21,23 +20,6 @@ namespace vanilla.Core.ViewModels
             _stationRepository = stationRepository;
         }
 
-        public IEnumerable<Station> Stations { get; set; }
-        public Station SelectedStation {
-            get => _selectedStation;
-            set {
-                if (_selectedStation != value) {
-                    SetProperty(ref _selectedStation, value);
-
-                    DisplaySelectedStation();
-                }
-            }
-        }
-
-        private void DisplaySelectedStation()
-        {
-            _navigationService.Navigate<StationDetailsViewModel, int>(SelectedStation.Id);
-        }
-
         public async override Task Initialize()
         {
             await base.Initialize();
@@ -45,5 +27,16 @@ namespace vanilla.Core.ViewModels
             Stations = _stationRepository.GetAllStations();
         }
 
+        public IList<Station> Stations { get; set; }
+
+        public Station SelectedStation {
+            get => _selectedStation;
+            set {
+                if (_selectedStation != value) {
+                    SetProperty(ref _selectedStation, value);
+                    if (_selectedStation != null) _navigationService.Navigate<StationDetailsViewModel, int>(SelectedStation.Id);
+                }
+            }
+        }
     }
 }

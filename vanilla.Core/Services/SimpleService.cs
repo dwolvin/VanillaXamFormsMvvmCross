@@ -11,13 +11,16 @@ namespace vanilla.Core.Services
         Task SleepTask();
         Task BoomTask();
         Task<Station> CreateStation(float lat, float lon, string name, string code);
+        void SeedDatabase();
     }
     public class SimpleService : ISimpleService
     {
         IMvxLog _log;
-        public SimpleService(IMvxLogProvider logProvider)
+        readonly IStationRepository _stationRepository;
+        public SimpleService(IMvxLogProvider logProvider, IStationRepository stationRepository)
         {
             _log = logProvider.GetLogFor<SimpleService>();
+            _stationRepository = stationRepository;
         }
         public async Task SleepTask()
         {
@@ -48,6 +51,17 @@ namespace vanilla.Core.Services
                 DateCreated = DateTime.Now
             };
             return station;
+        }
+
+        public void SeedDatabase()
+        {
+            var stations = new SeedData().AllStations();
+
+            foreach (var s in stations)
+            {
+               _stationRepository.InsertStation(s);
+            }
+            
         }
     }
 }

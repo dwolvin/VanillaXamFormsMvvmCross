@@ -9,6 +9,7 @@ using Xamarin.Forms;
 
 namespace vanilla.UI.Views
 {
+
     public partial class StationDetailsView : MvxContentPage, IMvxOverridePresentationAttribute
     {
         public StationDetailsView()
@@ -18,6 +19,7 @@ namespace vanilla.UI.Views
 
         public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
         {
+            
             if (Device.Idiom == TargetIdiom.Tablet)
             {
                 return new MvxMasterDetailPagePresentationAttribute(MasterDetailPosition.Detail) { NoHistory = true, WrapInNavigationPage=false};

@@ -32,7 +32,10 @@ namespace vanilla.Core.ViewModels
         {
            await base.Initialize();
 
-            Station = _stationRepository.GetStation(_stationId);
+            if (_stationId > 0)
+            {
+                Station = _stationRepository.GetStation(_stationId);
+            }
         }
     }
 }

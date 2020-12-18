@@ -5,23 +5,34 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:vanilla.UI.Views"
     x:Class="vanilla.UI.Views.StationDetailsView"
-    Title="Station Details"
-   
-    >
+    Title="Station Details" >
+
     <views:MvxContentPage.Content>
+
         <StackLayout Orientation="Vertical" Margin="40">
             <Label Text="Station Details" FontSize="Large"/>
 
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Code:"/>
-                <Label Text="{Binding Station.StationCode}"/>
+            <StackLayout Orientation="Horizontal" Margin="0,8,0,0">
+                <Label Text="Code:" FontSize="Medium" FontAttributes="Bold"/>
+                <Label Text="{Binding Station.StationCode}" FontSize="Large"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
-                <Label Text="Name:"/>
-                <Label Text="{Binding Station.StationName}"/>
+                <Label Text="Name:" FontSize="Medium" FontAttributes="Bold"/>
+                <Label Text="{Binding Station.StationName}" FontSize="Large"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Lat:" FontSize="Medium" FontAttributes="Bold"/>
+                <Label Text="{Binding Station.Lat}" FontSize="Large"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Lon:" FontSize="Medium" FontAttributes="Bold"/>
+                <Label Text="{Binding Station.Lon}" FontSize="Large"/>
             </StackLayout>
 
         </StackLayout>
+
     </views:MvxContentPage.Content>
 </views:MvxContentPage>

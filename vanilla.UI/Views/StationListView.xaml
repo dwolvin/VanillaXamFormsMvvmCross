@@ -5,13 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:vanilla.UI.Views"
     x:Class="vanilla.UI.Views.StationListView"
-        NavigationPage.HasBackButton="True"
-
     Title="Stations" >
 
     <views:MvxContentPage.Content>
         <StackLayout Orientation="Vertical" Margin="40">
-            <Label Text="List"/>
+
+            <Label Text="Stations"  FontSize="Large"/>
+
             <views:MvxListView
                 x:Name="stationList"
                 ItemsSource="{Binding Stations}"
