@@ -17,9 +17,9 @@ namespace vanilla.Core
             CreatableTypes()
                 .EndingWith("Repository")
                 .AsInterfaces()                
-                .RegisterAsSingleton();
+                .RegisterAsLazySingleton();
 
             RegisterAppStart<HomeViewModel>();
-        }
+        }        
     }
 }

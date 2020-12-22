@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using LiteDB;
 using vanilla.Core.Models;
 
 namespace vanilla.Core.Services
 {
-    public interface IStationRepository
+    public interface IStationRepository : IDisposable
     {
         IList<Station> GetAllStations();
         void InsertStation(Station station);
@@ -25,47 +26,70 @@ namespace vanilla.Core.Services
         private string AppDataFolder => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         private string dbFileFullPath => Path.Combine(AppDataFolder, dbFileName);
 
-        public StationRepository()
+        private void InitDatabase()
         {
+            Trace.WriteLine("Init Database.");
             _db = new LiteDatabase(dbFileFullPath);
             _collection = _db.GetCollection<Station>(collectionName);
             _collection.EnsureIndex(x => x.StationCode, true);
             _db.Checkpoint();
         }
 
+        private ILiteCollection<Station> Collection
+        {
+            get
+            {
+                if (_db == null)
+                {
+                    InitDatabase();
+                }
+                return _collection;
+            }
+        }
+
         public IList<Station> GetAllStations(){
-            return _collection.Query().Where(x => true).ToList();
+            return Collection.Query().Where(x => true).ToList();
         }
 
         public void InsertStation(Station station)
         {
-            if (!_collection.Exists(x => x.StationCode.Equals(station.StationCode)))
+            if (!Collection.Exists(x => x.StationCode.Equals(station.StationCode)))
             {
-                 _collection.Insert(station);
+                 Collection.Insert(station);
                 _db.Checkpoint();
             }
         }
 
         public void UpdateStation(Station station)
         {
-            _collection.Update(station);
+            Collection.Update(station);
             _db.Checkpoint();
         }
 
         public Station GetStation(string stationCode)
         {
-            return _collection.FindOne(x => x.StationCode == stationCode);
+            return Collection.FindOne(x => x.StationCode == stationCode);
         }
 
         public Station GetStation(int id)
         {
-            return _collection.FindById(id);
+            return Collection.FindById(id);
         }
 
         public void DeleteStation(Station station)
         {
-            _collection.Delete(station.Id);
+            Collection.Delete(station.Id);
             _db.Checkpoint();
+        }
+
+        public void Dispose()
+        {
+            if (_db != null)
+            {
+                Trace.WriteLine("Disposing database.");
+                _db.Dispose();
+                _db = null;
+            }           
         }
     }
 }

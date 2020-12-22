@@ -1,4 +1,7 @@
-﻿using Xamarin.Forms;
+﻿using System.Diagnostics;
+using MvvmCross;
+using vanilla.Core.Services;
+using Xamarin.Forms;
 
 namespace vanilla.UI
 {
@@ -15,6 +18,13 @@ namespace vanilla.UI
 
         protected override void OnSleep()
         {
+            Trace.WriteLine("Sleepting...");
+
+            var repo =  Mvx.IoCProvider.GetSingleton<IStationRepository>();
+            if (repo != null)
+            {
+                repo.Dispose();
+            }
         }
 
         protected override void OnResume()
