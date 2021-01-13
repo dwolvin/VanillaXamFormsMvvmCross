@@ -4,5 +4,44 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="vanilla.UI.App">
     <Application.Resources>
+
+        <!--Light-->
+        <Color x:Key="LightPageBackgroundColor">White</Color>
+        <Color x:Key="LightNavigationBarColor">Aqua</Color>
+        <Color x:Key="LightPrimaryTextColor">Black</Color>
+        <Color x:Key="LightSecondaryTextColor">DarkBlue</Color>
+
+        <!--Dark-->
+        <Color x:Key="DarkPageBackgroundColor">#111111</Color>
+        <Color x:Key="DarkNavigationBarColor">Teal</Color>
+        <Color x:Key="DarkPrimaryTextColor">White</Color>
+        <Color x:Key="DarkSecondaryTextColor">LightBlue</Color>
+
+        <!--Styles-->
+        <Style TargetType="ContentPage"  ApplyToDerivedTypes="True">
+            <Setter Property="BackgroundColor"
+                    Value="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}" />
+        </Style>
+
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor"
+                    Value="{AppThemeBinding Light={StaticResource LightNavigationBarColor}, Dark={StaticResource DarkNavigationBarColor}}" />
+            <Setter Property="BarTextColor"
+                    Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+            <Setter Property="FontSize" Value="Default"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="PageTitleTextStyle" >
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"  />
+            <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+
     </Application.Resources>
 </Application>

@@ -10,7 +10,7 @@ namespace vanilla.UI
         public App()
         {           
             InitializeComponent();
-        }    
+        }
 
         protected override void OnStart()
         {
@@ -29,6 +29,10 @@ namespace vanilla.UI
 
         protected override void OnResume()
         {
+            //Set AppTheme from OS Theme
+            Application.Current.UserAppTheme = (Application.Current.RequestedTheme == OSAppTheme.Dark) ?
+                OSAppTheme.Dark : OSAppTheme.Light;
+
         }
     }
 }

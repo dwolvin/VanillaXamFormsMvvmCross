@@ -13,23 +13,23 @@
             <Label Text="Station Details" FontSize="Large"/>
 
             <StackLayout Orientation="Horizontal" Margin="0,8,0,0">
-                <Label Text="Code:" FontSize="Medium" FontAttributes="Bold"/>
-                <Label Text="{Binding Station.StationCode}" FontSize="Large"/>
+                <Label Text="Code:" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center"/>
+                <Label Text="{Binding Station.StationCode}" FontSize="Large" VerticalOptions="Center"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
-                <Label Text="Name:" FontSize="Medium" FontAttributes="Bold"/>
-                <Label Text="{Binding Station.StationName}" FontSize="Large"/>
+                <Label Text="Name:" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center"/>
+                <Label Text="{Binding Station.StationName}" FontSize="Large" VerticalOptions="Center"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
-                <Label Text="Lat:" FontSize="Medium" FontAttributes="Bold"/>
-                <Label Text="{Binding Station.Lat}" FontSize="Large"/>
+                <Label Text="Lat:" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center"/>
+                <Label Text="{Binding Station.Lat}" FontSize="Large"     VerticalOptions="Center"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
-                <Label Text="Lon:" FontSize="Medium" FontAttributes="Bold"/>
-                <Label Text="{Binding Station.Lon}" FontSize="Large"/>
+                <Label Text="Lon:" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center"/>
+                <Label Text="{Binding Station.Lon}" FontSize="Large"        VerticalOptions="Center"/>
             </StackLayout>
 
         </StackLayout>
