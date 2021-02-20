@@ -4,41 +4,34 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="vanilla.UI.App">
     <Application.Resources>
+        
+        <!--Colors are defined in ResourceDictionaries is: Themes/DarkTheme and Themes/LightTheme-->
 
-        <!--Light-->
-        <Color x:Key="LightPageBackgroundColor">White</Color>
-        <Color x:Key="LightNavigationBarColor">Aqua</Color>
-        <Color x:Key="LightPrimaryTextColor">Black</Color>
-        <Color x:Key="LightSecondaryTextColor">DarkBlue</Color>
+        <!--Set a default--> 
+        <ResourceDictionary Source="Themes/LightTheme.xaml" />
 
-        <!--Dark-->
-        <Color x:Key="DarkPageBackgroundColor">#111111</Color>
-        <Color x:Key="DarkNavigationBarColor">Teal</Color>
-        <Color x:Key="DarkPrimaryTextColor">White</Color>
-        <Color x:Key="DarkSecondaryTextColor">LightBlue</Color>
-
-        <!--Styles-->
+        <!--Styles.  Use colors defined in the dictionaries above as Dynamic Resources! -->
         <Style TargetType="ContentPage"  ApplyToDerivedTypes="True">
-            <Setter Property="BackgroundColor"
-                    Value="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}" />
+                    <Setter Property="BackgroundColor"
+                    Value="{DynamicResource PageBackgroundColor}" />
         </Style>
 
         <Style TargetType="NavigationPage">
             <Setter Property="BarBackgroundColor"
-                    Value="{AppThemeBinding Light={StaticResource LightNavigationBarColor}, Dark={StaticResource DarkNavigationBarColor}}" />
+                    Value="{DynamicResource NavigationBarColor}" />
             <Setter Property="BarTextColor"
-                    Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+                    Value="{DynamicResource PrimaryTextColor}" />
         </Style>
 
         <Style TargetType="Label">
             <Setter Property="TextColor"
-                    Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+                    Value="{DynamicResource PrimaryTextColor}" />
             <Setter Property="FontSize" Value="Default"/>
         </Style>
 
         <Style TargetType="Label" x:Key="PageTitleTextStyle" >
             <Setter Property="TextColor"
-                    Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"  />
+                    Value="{DynamicResource SecondaryTextColor}"  />
             <Setter Property="FontSize" Value="Large"/>
             <Setter Property="FontAttributes" Value="Bold"/>
         </Style>
